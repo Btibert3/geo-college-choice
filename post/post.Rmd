@@ -1,0 +1,92 @@
+---
+title: "Geographic Dependencies within Undergradate Admissions Comeptitive Sets"
+author: '@brocktibert'
+date: "August 2014"
+output: html_document
+---
+
+# Inspiration / Past Work
+
+Today I came across the following post on Twitter:
+
+> [Facebook friendships formed between people who checked in at the World Cup](https://twitter.com/seanjtaylor/status/492432734242230272/photo/1)  
+  
+It's not the first time that Sean has leveraged Facebook's data to explore his cool ideas: 
+
+> [The Emotional Highs and Lows of the NFL Season](https://www.facebook.com/notes/facebook-data-science/the-emotional-highs-and-lows-of-the-nfl-season/10152033221418859)
+  
+  
+> [NFL Fans on Facebook](https://www.facebook.com/notes/facebook-data-science/nfl-fans-on-facebook/10151298370823859)
+
+Furthermore, Facebook has a history of highlighting (promoting?) the geo-dependency of relationships found within their platform:
+
+> [Visualizing Friendships]("https://www.facebook.com/notes/facebook-engineering/visualizing-friendships/469716398919")
+
+
+In the past, I have blogged, and presented, about the applications of [graph analysis](http://en.wikipedia.org/wiki/Graph_theory) across a wide variety of questions applicable to Enrollment Management.  
+
+Today, I want to correlate the GPS coordinates of an insitution found in `IPEDS` (yes, this data is accessible in `IPEDS`!) to an insitution's compeitor set, which I define as the "Similar Schools" crawled from a well trafficked "College Search" site.
+
+___more text here___
+
+
+
+
+I plan on demonstrating how to crawl the web using `R` in later posts, but for time being, let's assume that we have a dataset in the following format:
+
+```{r echo=F, comment=NA}
+network[sample(1:nrow(network), size = 10, replace = F), ]
+```
+
+Here is a quick description of your database:
+
+```{r comment=NA, echo=FALSE}
+tmp_df = data.frame(column = c("from", "to", "rank"),
+                    definition = c("Your Insitution's UnitID", "Your Competitor's UnitID", "   1 = Your 'biggest' competitor")
+                    )
+tmp_df
+rm(tmp_df)
+
+```
+
+Because I am writing my blog post and analyzing the data simulatneously, the first column of data that you see above is an artifcat of how `R` prints data.  Basically, just ignore the first column of numbers when I print out data.  
+
+
+In my experience, the `Similar Schools` feature is actually pretty accurate on a number of  __Search__ websites.  By and large, when you start to combine the data from these sites, the results actually start to mirror what I get back from the [National Student Clearinghouse](http://www.studentclearinghouse.org/).  
+
+The key takeaway here is that these sites are pretty good lead sources, but I digress.........
+
+
+
+
+## Get the Geographic Coordinates from IPEDS
+
+For this, we are going to download a raw survey file from [IPEDS](http://nces.ed.gov/ipeds/) and read the resulting `.CSV` file into our `R` session. 
+
+
+
+__think about breaking up the code above into descriptions__
+
+
+Real quick, what do we have in our raw datasets before merging ...
+
+-  We have `r nrow(network)` rows in the network of similar colleges   
+-  The average rank is `r mean(network$rank, na.rm=T)`    
+-  The number of unique schools conisdered is: `r length(unique(ids))`  
+
+
+### PERHAPS I SHOULD SHOW A HISTOGRAM FOR THE RANKS
+
+
+
+## We need to merge on the lat/long pairs for the two schools
+
+The code below does this.  
+
+
+The dataset `network` above nows shows the GPS coordinate pairs for each competitor school.
+
+
+
+
+
