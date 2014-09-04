@@ -13,7 +13,7 @@ Show how local the graph is (complete with New England)
 
 Migration Data from IPEDS (spider graph)
 
-Circular graph of IPEDS data to show stay close [Circle Graphs](http://gjabel.wordpress.com/2014/03/28/circular-migration-flow-plots-in-r/)
+Circular graph of IPEDS data to show stay close [Chord Diagram](http://gjabel.wordpress.com/2014/03/28/circular-migration-flow-plots-in-r/)
 
 hairball of the graph (sans geo) with igraph
 
