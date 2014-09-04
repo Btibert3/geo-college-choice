@@ -7,14 +7,17 @@ Recently I came across the following post on Twitter :
 
 ## Goals
 
-Map the graph of colleges
+Map the graph of colleges (complete, but maybe add more schools)
 
-Show how local the graph is
+Show how local the graph is (complete with New England)
 
-hairball of the graph (sans geo)
+Migration Data from IPEDS (spider graph)
 
-introduce the idea of recommending engines (user/school)
+Circular graph of IPEDS data to show stay close [Circle Graphs](http://gjabel.wordpress.com/2014/03/28/circular-migration-flow-plots-in-r/)
 
-Can your graph predict the change in apps (or explain some variance in apps, is there brand value there?)
+hairball of the graph (sans geo) with igraph
 
-Predict user/schools with FAFSA data
+introduce the idea of using the graph for recommending engines (user/school)
+
+Can the school graph predict the change in apps (or explain some variance in apps, is there brand value there?)
+
