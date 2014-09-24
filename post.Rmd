@@ -166,6 +166,7 @@ head(edges)
 
 Finally!  We can start to map the data!  
 
+
 It may not have been obvious above, but I only kept the lower 48 states, including DC.  This will make it a bit easier for mapping, although it might be cool to see how regional college competition really is.
 
 
@@ -179,10 +180,10 @@ p = ggplot() + theme(panel.background = element_blank(),
                      axis.title = element_blank())
 p = p + geom_polygon( data=all_states, 
                        aes(x=long, y=lat, group = group),
-                       colour="black", 
-                       fill="black")
+                       colour="grey", 
+                       fill="grey")
 ## plot the schools
-p  + geom_point(aes(adm$longitud, adm$latitude), alpha = .4, col = "yellow")
+p  + geom_point(aes(adm$longitud, adm$latitude), alpha = .35, col = "blue")
 
 
 
@@ -198,38 +199,37 @@ The map above plots the location of the institutions included in our dataset.  B
 Now let's plot the connections.......
 
 
-__ Word this better__
+
 
 
 
 ```{r}
-
 ## create the arcs
 ## http://patilv.com/USOpenCountries/
-route = gcIntermediate(edges[, c('from_long', 'from_lat')], 
-                       edges[,c('to_long', 'to_lat')], 
-                       50, 
-                       breakAtDateLine=FALSE, 
-                       addStartEnd=TRUE, 
-                       sp=TRUE)
-
-# put the arcs into a data frame
-fortify.SpatialLinesDataFrame = function(model, data, ...) {
-  ldply(model@lines, fortify)
-}
-fortifiedroutes = fortify.SpatialLinesDataFrame(route) 
-                        
-
-
-is it easier to do basic plot or take arcs for the two pairs?
-
-
+# route = gcIntermediate(edges[, c('from_long', 'from_lat')], 
+#                        edges[,c('to_long', 'to_lat')], 
+#                        50, 
+#                        breakAtDateLine=FALSE, 
+#                        addStartEnd=TRUE, 
+#                        sp=TRUE)
+# 
+# # put the arcs into a data frame
+# fortify.SpatialLinesDataFrame = function(model, data, ...) {
+#   ldply(model@lines, fortify)
+# }
+# fortifiedroutes = fortify.SpatialLinesDataFrame(route) 
+#                         
+# 
+# 
+# is it easier to do basic plot or take arcs for the two pairs?
+# 
+# 
 ## create the
 p + geom_segment(aes(x=edges$from_long, 
                      xend = edges$to_long, 
                      y = edges$from_lat, 
                      yend = edges$to_lat),
-                 alpha = .02, 
+                 alpha = .0075, 
                  col = "blue")
 
 ```
@@ -268,7 +268,7 @@ p = p + geom_polygon( data=northeast,
 
 ## plot the schools
 tmp_ne = subset(adm, obereg %in% 1:2)
-p1 =  p  + geom_point(aes(tmp_ne$longitud, tmp_ne$latitude))
+p1 =  p  + geom_point(aes(tmp_ne$longitud, tmp_ne$latitude) , alpha = .35, col = "blue")
 
 
 ## plot the lines
@@ -280,7 +280,7 @@ p2 = p + geom_segment(aes(x=edges_ne$from_long,
                      xend = edges_ne$to_long, 
                      y = edges_ne$from_lat, 
                      yend = edges_ne$to_lat),
-                 alpha = .02, 
+                 alpha = .0075, 
                  col = "blue")
 
 ## plot
@@ -288,6 +288,35 @@ p1
 p2
 
 ```
+
+__SUMMARY NOTES FOR ABOVE__
+
+- very regional
+- on northeast, you can see how they cluster along, presumably, transporation and train lines
+  
+
+
+
+## IPEDS Migration Survey
+
+chord diagram
+
+## Network in igraph
+
+
+
+## Predict edges
+
+
+
+
+
+
+
+
+## Todo
+
+
 
 - Does it make sene to do this post as Cappex and app prediction network
 
